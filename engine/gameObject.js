@@ -18,6 +18,9 @@ export class ImageGameObject {
 
             this.src.push(image);
         });
+        // functions that can be created and ran on startup and every frame
+        this.start;
+        this.loop;
 
         scene.gameObjects.push(this);
     }
@@ -32,6 +35,10 @@ export class Square {
         this.size = size;
         this.clr = clr ? clr : '#ffffff';
 
+        // functions that can be created and ran on startup and every frame
+        this.start;
+        this.loop;
+
         scene.gameObjects.push(this);
     }
 }
@@ -44,6 +51,10 @@ export class Circle {
 
         this.size = radius;
         this.clr = clr ? clr : '#ffffff';
+
+        // functions that can be created and ran on startup and every frame
+        this.start;
+        this.loop;
 
         scene.gameObjects.push(this);
     }

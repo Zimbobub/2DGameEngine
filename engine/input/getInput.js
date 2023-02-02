@@ -9,9 +9,9 @@ window.onkeydown = function (event) {
     }
     handleControlScheme();
     //console.log(event);
-    console.clear();
-    console.log(keys);
-    console.log(controls);
+    //console.clear();
+    //console.log(keys);
+    //console.log(controls);
 }
 
 window.onkeyup = function (event) {
@@ -19,17 +19,17 @@ window.onkeyup = function (event) {
         keys.splice(keys.indexOf(event.code), 1);
     }
     handleControlScheme()
-    console.clear();
-    console.log(keys);
-    console.log(controls);
+    //console.clear();
+    //console.log(keys);
+    //console.log(controls);
 }
 
 window.onblur = function (event) {
     keys = [];
     controls = [];
-    console.clear();
-    console.log(keys);
-    console.log(controls);
+    //console.clear();
+    //console.log(keys);
+    //console.log(controls);
 }
 
 function handleControlScheme() {

@@ -2,8 +2,13 @@ import { canvas, context } from "./canvas.js";
 import { controls, keys } from "./input/getInput.js";
 import { scene } from "./scene.js";
 
-export function renderFrame() {
+export function renderFrame(time) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
     scene.gameObjects.forEach(gameObject => {
+
+        //if (time == 0) gameObject.start();
+        //gameObject.loop();
+
         switch (gameObject.type) {
             case 'image':
                 renderImage(gameObject);
@@ -42,17 +47,19 @@ function renderImage(gameObject) {
 }
 
 function renderSquare(gameObject) {
-    let pos = offsetPos(gameObject.pos);
+    let pos = offsetPos(gameObject);
+    //console.log(pos);
     context.fillStyle = gameObject.clr;
     context.fillRect(pos.x, pos.y, gameObject.size, gameObject.size);
     //console.log(gameObject.src[gameObject.frame]);
 }
 
 
-function offsetPos(pos) {
+function offsetPos(gameObject) {
+    let output = gameObject.pos;
     const scale = 100;
 
-    let output = pos;
+
     //console.log(output);
 
     // scale independant of resolution
@@ -60,13 +67,13 @@ function offsetPos(pos) {
     output.y = (output.y / scale) * canvas.height
     //console.log(output);
 
-    // offset to centre
+    // offset to centre THIS HERE THE GAMEOBJECT POS IS BEING MODIFIED INSTEAD OF OUTPUT
     output.x += (canvas.width / 2);
     output.y += (canvas.height / 2);
     //console.log(output);
 
 
-
+    console.log(pos);
     return output;
 }
 
