@@ -47,16 +47,18 @@ function renderImage(gameObject) {
 }
 
 function renderSquare(gameObject) {
-    let pos = offsetPos(gameObject);
+    console.log(/*offsetPos(*/gameObject.pos/*)*/);
+    const pos = offsetPos(gameObject.pos);
     //console.log(pos);
     context.fillStyle = gameObject.clr;
     context.fillRect(pos.x, pos.y, gameObject.size, gameObject.size);
     //console.log(gameObject.src[gameObject.frame]);
 }
 
-
-function offsetPos(gameObject) {
-    let output = gameObject.pos;
+// OLD
+function aoffsetPos(pos) {
+    console.log(pos);
+    let output = pos;
     const scale = 100;
 
 
@@ -64,17 +66,27 @@ function offsetPos(gameObject) {
 
     // scale independant of resolution
     output.x = (output.x / scale) * canvas.width;
-    output.y = (output.y / scale) * canvas.height
+    output.y = (output.y / scale) * canvas.height;
     //console.log(output);
-
-    // offset to centre THIS HERE THE GAMEOBJECT POS IS BEING MODIFIED INSTEAD OF OUTPUT
-    output.x += (canvas.width / 2);
-    output.y += (canvas.height / 2);
+    console.log(pos);
+    // offset to centre
+    output.x -= (canvas.width / 2);
+    output.y -= (canvas.height / 2);
     //console.log(output);
 
 
     console.log(pos);
     return output;
+}
+
+function offsetPos(pos) {
+    let output = pos;
+    const scale = 100;
+
+    return {
+        x: ((output.x / scale) * canvas.width) - (canvas.width / 2),
+        y: ((output.y / scale) * canvas.height) - (canvas.height / 2)
+    }
 }
 
 
