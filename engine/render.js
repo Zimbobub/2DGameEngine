@@ -1,15 +1,13 @@
-import { canvas, context } from "./canvas.js";
-import { controls, keys } from "./input/getInput.js";
+import { canvas, context, config } from "./canvas.js";
+import { controls, keys } from "../components/input/getInput.js";
 import { scene } from "./scene.js";
 
 export function renderFrame(time) {
     context.clearRect(0, 0, canvas.width, canvas.height);
     scene.gameObjects.forEach(gameObject => {
+        gameObject.components.loop();
 
-        //if (time == 0) gameObject.start();
-        gameObject.loop();
-
-        switch (gameObject.type) {
+        switch (gameObject.renderType) {
             case 'image':
                 renderImage(gameObject);
                 break;
@@ -24,7 +22,6 @@ export function renderFrame(time) {
 
             default:
                 throw new Error('Invalid GameObject Type');
-                break;
         }
 
     });
@@ -47,46 +44,38 @@ function renderImage(gameObject) {
 }
 
 function renderSquare(gameObject) {
-    //console.log(/*offsetPos(*/gameObject.pos/*)*/);
-    const pos = offsetPos(gameObject.pos);
-    //console.log(pos);
+    const pos = offsetPos(gameObject);
+    //const scale = offsetScale(gameObject);
+    //console.log(gameObject.size);
+
     context.fillStyle = gameObject.clr;
-    context.fillRect(pos.x, pos.y, gameObject.size, gameObject.size);
+    context.fillRect(pos.x, pos.y, gameObject.width, gameObject.height);
     //console.log(gameObject.src[gameObject.frame]);
 }
 
-// OLD
-function aoffsetPos(pos) {
-    console.log(pos);
-    let output = pos;
-    const scale = 100;
+function offsetPos(gameObject) {
+    let output = gameObject.pos;
 
-
-    //console.log(output);
-
-    // scale independant of resolution
-    output.x = (output.x / scale) * canvas.width;
-    output.y = (output.y / scale) * canvas.height;
-    //console.log(output);
-    console.log(pos);
-    // offset to centre
-    output.x -= (canvas.width / 2);
-    output.y -= (canvas.height / 2);
-    //console.log(output);
-
-
-    console.log(pos);
-    return output;
-}
-
-function offsetPos(pos) {
-    let output = pos;
-    const screenWidth = 100;
-    const screenHeight = 50;
     return {
-        x: ((canvas.width / 2) + ((output.x / screenWidth) * canvas.width)),
-        y: ((canvas.height / 2) - ((output.y / screenWidth) * canvas.height))
+        x: (
+            (canvas.width / 2) // moves the origin point from the centre to the top left
+            + ((output.x / config.screenWidth) * canvas.width) // scales the position relative to the window size
+            - (gameObject.width / 2) // centres the pos from the gameObject's centre to the top left
+        ),
+        y: (
+            (canvas.height / 2)
+            - ((output.y / config.screenHeight) * canvas.height)
+            - (gameObject.height / 2)
+        )
     }
 }
-
+/*
+function offsetScale(gameObject) {
+    let output = { x: gameObject.width, y: gameObject.height };
+    return {
+        x: ((canvas.width / output.x) / config.screenWidth),
+        y: ((canvas.height / output.y) / config.screenHeight)
+    }
+}
+*/
 
