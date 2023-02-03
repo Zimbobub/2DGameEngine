@@ -7,7 +7,7 @@ export function renderFrame(time) {
     scene.gameObjects.forEach(gameObject => {
 
         //if (time == 0) gameObject.start();
-        //gameObject.loop();
+        gameObject.loop();
 
         switch (gameObject.type) {
             case 'image':
@@ -47,7 +47,7 @@ function renderImage(gameObject) {
 }
 
 function renderSquare(gameObject) {
-    console.log(/*offsetPos(*/gameObject.pos/*)*/);
+    //console.log(/*offsetPos(*/gameObject.pos/*)*/);
     const pos = offsetPos(gameObject.pos);
     //console.log(pos);
     context.fillStyle = gameObject.clr;
@@ -81,11 +81,11 @@ function aoffsetPos(pos) {
 
 function offsetPos(pos) {
     let output = pos;
-    const scale = 100;
-
+    const screenWidth = 100;
+    const screenHeight = 50;
     return {
-        x: ((output.x / scale) * canvas.width) - (canvas.width / 2),
-        y: ((output.y / scale) * canvas.height) - (canvas.height / 2)
+        x: ((canvas.width / 2) + ((output.x / screenWidth) * canvas.width)),
+        y: ((canvas.height / 2) - ((output.y / screenWidth) * canvas.height))
     }
 }
 

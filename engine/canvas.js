@@ -1,8 +1,11 @@
 
+const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+
 export const config = {
     bg: "#101015",
-    width: window.innerWidth,
-    height: window.innerHeight
+    width: vw,
+    height: vh
 }
 
 export const canvas = document.getElementById('canvas');
