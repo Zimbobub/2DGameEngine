@@ -1,5 +1,4 @@
-import { controls } from './components/input/getInput.js';
-import { scene } from './engine/scene.js';
+import { scene } from './engine/core/scene.js';
 import { Player } from './gameObjects/player.js';
 
 let player = new Player();

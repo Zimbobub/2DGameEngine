@@ -1,4 +1,4 @@
-import { scene } from "../engine/scene.js";
+import { scene } from "../engine/core/scene.js";
 
 export class GameObject {
     constructor(pos, rot, size) {

@@ -1,7 +1,7 @@
-import { Square } from "./gameObject.js";
-import { controls } from '../components/input/getInput.js';
+import { Circle, Square } from "./gameObject.js";
+import { controls } from '../engine/components/input/getInput.js';
 
-export class Player extends Square {
+export class Player extends Circle {
     constructor() {
         super(100, '#ffffff');
         this.pos = { x: 0, y: 0 };
