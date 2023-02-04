@@ -77,12 +77,15 @@ function toEnginePos(pos) {
     // moves 0,0 to top left of canvas instead of viewport
     output.x -= canvasPos.x;
     output.x -= canvasPos.y;
+
     // moves 0,0 to centre of canvas
     output.x -= (canvas.width / 4);
     output.y -= (canvas.height / 4);
+
     // scales pos based on resolution
     output.x = ((config.screenWidth / canvas.width) * output.x) * 2;
     output.y = 0 - ((config.screenHeight / canvas.height) * output.y) * 2;
+
 
     return output;
 }
