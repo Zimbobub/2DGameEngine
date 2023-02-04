@@ -53,6 +53,20 @@ function renderSquare(gameObject) {
     //console.log(gameObject.src[gameObject.frame]);
 }
 
+function renderCircle(gameObject) {
+    const pos = offsetPos(gameObject);
+    //const scale = offsetScale(gameObject);
+    //console.log(gameObject);
+
+    context.fillStyle = gameObject.clr;
+    //context.fillRect(pos.x, pos.y, gameObject.width, gameObject.height);
+    context.beginPath();
+    context.arc(pos.x, pos.y, gameObject.width, 0, (2 * Math.PI));
+    context.fill()
+    //console.log(gameObject.src[gameObject.frame]);
+}
+
+
 function offsetPos(gameObject) {
     let output = gameObject.pos;
 
