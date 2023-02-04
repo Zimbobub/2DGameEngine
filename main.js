@@ -1,4 +1,3 @@
-import { ImageGameObject, Square, Circle } from './engine/gameObject.js';
 import { controls } from './components/input/getInput.js';
 import { scene } from './engine/scene.js';
 import { Player } from './gameObjects/player.js';
