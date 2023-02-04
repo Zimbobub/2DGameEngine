@@ -1,3 +1,4 @@
+import { scene } from "../engine/scene.js";
 
 export class GameObject {
     constructor(pos, rot, size) {
@@ -7,6 +8,7 @@ export class GameObject {
 
         this.width = size;
         this.height = size;
+
 
         this.components = {
             // functions
@@ -26,8 +28,13 @@ export class GameObject {
     }
 }
 
-class Square extends GameObject {
-    constructor(clr) {
+export class Square extends GameObject {
+    constructor(size, clr) {
+        super();
+
+        this.width = size;
+        this.height = size;
+
         this.renderType = 'square';
         this.clr = this.clr = clr ? clr : '#ffffff';
     }

@@ -46,7 +46,7 @@ function renderImage(gameObject) {
 function renderSquare(gameObject) {
     const pos = offsetPos(gameObject);
     //const scale = offsetScale(gameObject);
-    //console.log(gameObject.size);
+    //console.log(gameObject);
 
     context.fillStyle = gameObject.clr;
     context.fillRect(pos.x, pos.y, gameObject.width, gameObject.height);
@@ -73,8 +73,8 @@ function offsetPos(gameObject) {
 function offsetScale(gameObject) {
     let output = { x: gameObject.width, y: gameObject.height };
     return {
-        x: ((canvas.width / output.x) / config.screenWidth),
-        y: ((canvas.height / output.y) / config.screenHeight)
+        x: ((config.screenWidth / (canvas.width / 1)) * output.x),
+        y: ((config.screenHeight / (canvas.height / 1)) * output.y)
     }
 }
 */
